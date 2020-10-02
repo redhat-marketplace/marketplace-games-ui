@@ -134,7 +134,6 @@
   <Gradient />
   <div class="container">
     <div id="game-board">
-      <Snake snakeBodies="{currentState.snakeBody}" />
       <Food coordinates="{currentState.foodCoordinate}" />
     </div>
   </div>
