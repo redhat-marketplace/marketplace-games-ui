@@ -1,0 +1,7 @@
+# Build folders
+public
+build
+dist
+
+node_modules
+rollup.config.js
