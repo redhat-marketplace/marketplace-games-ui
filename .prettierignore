@@ -1,6 +1,7 @@
 .github
 public
 node_modules
+coverage
 
 
 # Changelogs

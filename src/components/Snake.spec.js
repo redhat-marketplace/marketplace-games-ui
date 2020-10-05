@@ -1,6 +1,5 @@
 import { render } from '@testing-library/svelte';
 
-import SnakeBody from './SnakeBody.svelte';
 import Snake from './Snake.svelte';
 
 describe('<Snake />', function () {
