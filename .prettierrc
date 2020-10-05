@@ -1,9 +1,9 @@
 {
   "plugins": ["prettier-plugin-svelte"],
   "svelteSortOrder" : "styles-scripts-markup",
-  "svelteStrictMode": true,
+  "svelteStrictMode": false,
   "svelteBracketNewLine": true,
-  "svelteAllowShorthand": false,
+  "svelteAllowShorthand": true,
   "svelteIndentScriptAndStyle": true,
   "printWidth": 80,
   "proseWrap": "always",

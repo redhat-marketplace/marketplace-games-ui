@@ -8,10 +8,10 @@
 </style>
 
 <script>
-  export let coordinates = { x: 50, y: 50 };
+  export let coordinates = { x: 10, y: 10 };
 </script>
 
 <div
   class="snake-body"
   style="grid-row-start: {coordinates.y}; grid-column-start: {coordinates.x};"
-></div>
+/>

@@ -4,6 +4,6 @@
   export let snakeBodies = [];
 </script>
 
-{#each snakeBodies as snakeBody}
-  <SnakeBody coordinates="{snakeBody}" />
+{#each snakeBodies as coordinates}
+  <SnakeBody {coordinates} />
 {/each}

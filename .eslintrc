@@ -1,13 +1,14 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jest/globals": true
   },
   "parserOptions": {
     "ecmaVersion": 2019,
     "sourceType": "module"
   },
-  "plugins": ["svelte3"],
+  "plugins": ["svelte3", "jest"],
   "extends": ["eslint:recommended", "prettier"],
   "overrides": [
     {
