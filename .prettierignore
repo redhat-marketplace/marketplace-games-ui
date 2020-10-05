@@ -1,0 +1,14 @@
+.github
+public
+node_modules
+
+
+# Changelogs
+**/CHANGELOG.md
+
+# Generated docs
+
+# Examples
+
+# Yarn
+**/.yarn/*
