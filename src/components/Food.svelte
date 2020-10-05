@@ -13,4 +13,4 @@
 <div
   class="food"
   style="grid-row-start: {coordinates.y}; grid-column-start: {coordinates.x};"
-></div>
+/>
