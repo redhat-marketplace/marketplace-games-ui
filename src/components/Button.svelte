@@ -1,15 +1,11 @@
 <style>
   button {
     padding: 0;
-    width: 150px;
+    min-width: 150px;
     height: 50px;
     cursor: pointer;
     background: transparent;
     border: none;
-  }
-
-  button:focus {
-    outline: none;
   }
 
   .btn-content {
@@ -37,6 +33,7 @@
     position: absolute;
     left: 0;
     top: 0;
+    overflow: visible;
   }
 
   svg use[filter='url(#pri-hover)'],
@@ -90,6 +87,7 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
+      preserveAspectRatio="xMidYMid slice"
     >
       <title>{label}</title>
       <defs>
