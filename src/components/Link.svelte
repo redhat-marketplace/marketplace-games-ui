@@ -1,17 +1,10 @@
-<script>
-  export let href = "#";
-  export let disabled = false;
-  export let target = "_blank";
-  export let rel = "noopener noreferrer";
-</script>
-
 <style>
   span {
     display: inline-flex;
     align-items: center;
     color: #3284d3;
   }
-  span[disabled="true"] {
+  span[disabled='true'] {
     cursor: not-allowed;
     opacity: 0.45;
   }
@@ -26,6 +19,13 @@
     color: #3c51b0;
   }
 </style>
+
+<script>
+  export let href = '#';
+  export let disabled = false;
+  export let target = '_blank';
+  export let rel = 'noopener noreferrer';
+</script>
 
 {#if disabled}
   <span {disabled}>
