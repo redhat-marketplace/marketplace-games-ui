@@ -1,8 +1,3 @@
-<script>
-  export let label = 'Checkbox label';
-  export let checked = true;
-</script>
-
 <style>
   label {
     position: relative;
@@ -10,7 +5,7 @@
     cursor: pointer;
   }
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     box-sizing: border-box;
     appearance: none;
     background: transparent;
@@ -21,7 +16,7 @@
     height: 24px;
   }
 
-  input[type="checkbox"]:checked {
+  input[type='checkbox']:checked {
     background: #13f3fe;
   }
 
@@ -38,8 +33,8 @@
     display: inline-block;
   }
 
-  input[type="checkbox"]:checked + .checkmark:after {
-    content: "";
+  input[type='checkbox']:checked + .checkmark:after {
+    content: '';
     display: block;
     position: absolute;
     left: 14px;
@@ -51,6 +46,11 @@
     transform: rotate(45deg);
   }
 </style>
+
+<script>
+  export let label = 'Checkbox label';
+  export let checked = true;
+</script>
 
 <label>
   <input type="checkbox" bind:checked class="input" on:change />

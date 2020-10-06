@@ -13,13 +13,16 @@ describe('<Checkbox />', function () {
       const labelEl = getByText(TEST_PROPS.label);
       const checkboxEl = container.querySelector('input');
 
-      expect(checkboxEl.checked).toBeTruthy()
+      expect(checkboxEl.checked).toBeTruthy();
       expect(labelEl).toBeInTheDocument();
       expect(labelEl).toHaveTextContent(TEST_PROPS.label);
     });
 
     it('renders Checkbox with passed in checked prop for checkbox', () => {
-      const { container, getByText } = render(Checkbox, { ...TEST_PROPS, checked: false });
+      const { container, getByText } = render(Checkbox, {
+        ...TEST_PROPS,
+        checked: false,
+      });
       const labelEl = getByText(TEST_PROPS.label);
       const checkboxEl = container.querySelector('input');
 
@@ -31,10 +34,10 @@ describe('<Checkbox />', function () {
       const { container } = render(Checkbox, { ...TEST_PROPS });
 
       const checkboxEl = container.querySelector('input');
-      expect(checkboxEl.checked).toBeTruthy()
-      
-      await fireEvent.click(checkboxEl)
-      
+      expect(checkboxEl.checked).toBeTruthy();
+
+      await fireEvent.click(checkboxEl);
+
       expect(checkboxEl.checked).toBeFalsy();
     });
   });
@@ -44,7 +47,7 @@ describe('<Checkbox />', function () {
       const labelEl = getByText('Checkbox label');
       const checkboxEl = container.querySelector('input');
 
-      expect(checkboxEl.checked).toBeTruthy()
+      expect(checkboxEl.checked).toBeTruthy();
       expect(labelEl).toBeInTheDocument();
     });
   });
