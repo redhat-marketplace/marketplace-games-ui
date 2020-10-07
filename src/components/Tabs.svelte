@@ -22,7 +22,19 @@
 
   li.active > span {
     color: #fff;
-    background: linear-gradient(#06092c, rgba(0, 159, 232, 0.35));
+  }
+  li.active:after {
+    content: '';
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    border-bottom: solid 2px #73bcf7;
+    box-shadow: 0 -2.5px 3px -0.25px rgba(115, 188, 247, 0.75);
+  }
+
+  li:not(.active) > span {
+    color: #008bad;
+    background: linear-gradient(transparent, rgba(0, 102, 204, 0.35));
   }
 </style>
 
