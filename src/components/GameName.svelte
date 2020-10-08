@@ -7,11 +7,14 @@
       rgba(0, 102, 204, 0.15) 100%
     );
     display: flex;
+    padding: 0.75rem;
+    position: relative;
+  }
+
+  .game-name h2 {
     font-size: 1.125rem;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 0.75rem;
-    position: relative;
   }
 
   .game-icon {
