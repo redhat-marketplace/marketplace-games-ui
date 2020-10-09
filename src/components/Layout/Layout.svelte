@@ -63,7 +63,9 @@
 
 <script>
   import Gradient from './Gradient.svelte';
-  import GameName from './GameName.svelte';
+  import GameName from '../GameName/GameName.svelte';
+  import Score from '../Score/Score.svelte';
+  import Difficulty from '../Difficulty/Difficulty.svelte';
 </script>
 
 <Gradient />
@@ -77,6 +79,8 @@
     </section>
     <aside data-testid="right-rail" class="right-rail">
       <GameName name="Snake" />
+      <Score />
+      <Difficulty />
     </aside>
   </div>
 </main>
