@@ -2,7 +2,7 @@
   span {
     display: inline-flex;
     align-items: center;
-    color: #3284d3;
+    color: inherit;
   }
   span[disabled='true'] {
     cursor: not-allowed;
