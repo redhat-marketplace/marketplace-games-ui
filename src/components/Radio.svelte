@@ -50,7 +50,7 @@
 
 <script>
   export let options = ['Option 1', 'Option 2'];
-  export let selected;
+  export let selected = undefined;
 </script>
 
 {#if options}
