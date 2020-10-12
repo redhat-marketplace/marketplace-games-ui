@@ -66,7 +66,6 @@
   import Gradient from './Gradient.svelte';
   import GameName from '../GameName/GameName.svelte';
   import Score from '../Score/Score.svelte';
-  import Difficulty from '../Difficulty/Difficulty.svelte';
 
   $: scores = [
     { title: 'Current', score: $currentGame.currentScore },

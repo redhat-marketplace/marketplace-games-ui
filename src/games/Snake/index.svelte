@@ -12,8 +12,6 @@
 </style>
 
 <script>
-  import { onMount } from 'svelte';
-
   import { currentGame, currentGameLifecycle } from '../../store/currentGame';
   import Snake from './Snake.svelte';
   import Food from './Food.svelte';
