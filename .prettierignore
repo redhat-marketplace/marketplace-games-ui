@@ -13,3 +13,7 @@ coverage
 
 # Yarn
 **/.yarn/*
+
+
+# storybook
+**/storybook-static/**
