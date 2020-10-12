@@ -12,13 +12,15 @@
   .backdrop {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
   }
 
   .modal-container {
     background: transparent;
-    max-width: 80vw;
-    max-height: 80vh;
+    max-width: 60vw;
+    max-height: 60vh;
     position: relative;
+    z-index: 5;
   }
 
   .modal,
@@ -45,6 +47,7 @@
     z-index: -1;
     overflow: visible;
     position: absolute;
+    max-width: 60vmin;
   }
 </style>
 
@@ -52,9 +55,9 @@
   import { onMount } from 'svelte';
 
   export let open = false;
-  export let backdrop = false;
+  export let backdrop = true;
   export let attachToRoot = false;
-  let modalRef;
+  let modalRef, svgRef;
 
   export function show() {
     open = true;
@@ -63,6 +66,12 @@
       modalRef.style.top = '0';
       modalRef.style.left = '0';
       modalRef.style.justifyContent = 'center';
+
+      svgRef.left = '0';
+      svgRef.right = '0';
+      svgRef.marginRight = 'auto';
+      svgRef.marginLeft = 'auto';
+
       document.body.appendChild(modalRef);
     }
   }
@@ -87,6 +96,7 @@
     {/if}
     <div class="modal-container">
       <svg
+        bind:this={svgRef}
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 424 379"
@@ -130,7 +140,7 @@
         </defs>
         <g fill-rule="evenodd" transform="translate(-1016 -623)">
           <use filter="url(#svg-modal-fitler)" xlink:href="#svg-modal-bg" />
-          <use fill-opacity=".2" stroke="#007BCC" xlink:href="#svg-modal-bg" />
+          <use fill-opacity=".2" stroke="#008BAD" xlink:href="#svg-modal-bg" />
         </g>
       </svg>
       <div class="modal-content">
