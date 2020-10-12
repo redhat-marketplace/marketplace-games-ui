@@ -118,7 +118,7 @@
 
 <svelte:window on:keydown={onKeyDown} />
 
-<div id="game-board">
+<div id="game-board" data-testid="game-board">
   <Snake snakeBodies={currentState.snakeBody} />
   <Food coordinates={currentState.foodCoordinate} />
 </div>
