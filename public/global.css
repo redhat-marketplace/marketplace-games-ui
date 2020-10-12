@@ -30,15 +30,17 @@ dd {
 
 /* Set core root defaults */
 html {
+	font-size: 100%;
 	scroll-behavior: smooth;
 }
 
 /* Set core body defaults */
 body {
-	min-height: 100vh;
+	font-size: 16px;
+	font-weight: 400;
 	text-rendering: optimizeSpeed;
 	line-height: 1.5;
-	font-family: 'Titillium Web', sans-serif;
+	font-family: 'Red Hat Text', sans-serif;
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
