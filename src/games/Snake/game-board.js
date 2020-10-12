@@ -1,4 +1,4 @@
-import { mod } from './base';
+import { mod } from '../../utils/base';
 
 export function createRandomCoordinate(gridSize) {
   return {

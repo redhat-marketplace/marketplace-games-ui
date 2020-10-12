@@ -56,11 +56,11 @@
         }
       </style>
       <radialGradient id="rg0" fx="0.32410298574889895" fy="0.5">
-        <stop offset="0%" stop-color="#005c73" />
-        <stop offset="100%" stop-color="#005c73" stop-opacity="0" />
+        <stop offset="0%" stop-color="#001223" />
+        <stop offset="100%" stop-color="#002952" stop-opacity="0" />
       </radialGradient>
       <radialGradient id="rg1" fx="0.3301258122849816" fy="0.5">
-        <stop offset="0%" stop-color="#001223" />
+        <stop offset="0%" stop-color="#004080" />
         <stop offset="100%" stop-color="#001223" stop-opacity="0" />
       </radialGradient>
       <radialGradient id="rg2" fx="0.3865444770050234" fy="0.5">
@@ -68,8 +68,8 @@
         <stop offset="100%" stop-color="#001223" stop-opacity="0" />
       </radialGradient>
       <radialGradient id="rg3" fx="0.37897711281652047" fy="0.5">
-        <stop offset="0%" stop-color="#002d39" />
-        <stop offset="100%" stop-color="#002d39" stop-opacity="0" />
+        <stop offset="0%" stop-color="#004080" />
+        <stop offset="100%" stop-color="#001223" stop-opacity="0" />
       </radialGradient>
     </defs>
     <rect id="bg" x="0" y="0" width="100%" height="100%" />
