@@ -14,7 +14,7 @@
 <script>
   import { onMount } from 'svelte';
 
-  import { gameStore, currentScore } from '../../store';
+  import { currentGame, currentGameLifecycle } from '../../store/currentGame';
   import Snake from './Snake.svelte';
   import Food from './Food.svelte';
 
@@ -53,7 +53,7 @@
     if (isGameOver) {
       throw Error('game over');
     } else if (willEat(state)) {
-      currentScore.increment(10);
+      currentGame.incrementScore();
       return [nextHeadCoordinate(state), ...state.snakeBody];
     } else {
       return [nextHeadCoordinate(state), ...dropLast(state.snakeBody)];
@@ -93,7 +93,7 @@
   };
   const step = (currentTime) => (lastRenderedTime) => {
     try {
-      if ($gameStore.isPlaying) {
+      if ($currentGameLifecycle.isPlaying) {
         if (lastRenderedTime - currentTime > 1000 / FRAMES_PER_SECOND) {
           currentState = nextState(currentState);
           requestAnimationFrame(step(lastRenderedTime));
@@ -102,14 +102,16 @@
         }
       }
     } catch {
-      gameStore.setIsEndOfGame(true);
+      currentGameLifecycle.setIsEndOfGame(true);
+      currentGame.setPersonalBest($currentGame.currentScore);
+      currentGame.resetCurrentScore();
       currentState = initialState();
     }
   };
 
   let currentState = initialState();
 
-  $: if ($gameStore.isPlaying) {
+  $: if ($currentGameLifecycle.isPlaying) {
     requestAnimationFrame(step(0));
   }
 </script>
