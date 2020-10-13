@@ -45,7 +45,6 @@ export function createGameLifecycle() {
         isPlaying: false,
         isEndOfGame: true,
       })),
-    reset: () => set({ isPlaying: false, isEndOfGame: false }),
   };
 }
 
