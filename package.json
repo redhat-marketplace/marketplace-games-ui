@@ -14,7 +14,7 @@
     "test": "yarn test:unit",
     "test:unit": "cross-env BABEL_ENV=test jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "yarn build && build-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
