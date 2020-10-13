@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
   .backdrop {
@@ -21,6 +22,7 @@
     max-height: 60vh;
     position: relative;
     z-index: 5;
+    margin: auto;
   }
 
   .modal,
@@ -47,7 +49,7 @@
     z-index: -1;
     overflow: visible;
     position: absolute;
-    max-width: 60vmin;
+    max-width: 75vmin;
   }
 </style>
 
@@ -130,7 +132,7 @@
             />
             <feColorMatrix
               in="shadowBlurOuter1"
-              values="0 0 0 0 0 0 0 0 0 0.4 0 0 0 0 0.8 0 0 0 0.3 0"
+              values="0 0 0 0 0   0 0 0 0 0.4   0 0 0 0 0.8  0 0 0 0.5 0"
             />
           </filter>
           <path
@@ -140,9 +142,10 @@
         </defs>
         <g fill-rule="evenodd" transform="translate(-1016 -623)">
           <use filter="url(#svg-modal-fitler)" xlink:href="#svg-modal-bg" />
-          <use fill-opacity=".2" stroke="#008BAD" xlink:href="#svg-modal-bg" />
+          <use fill-opacity=".75" stroke="#008BAD" xlink:href="#svg-modal-bg" />
         </g>
       </svg>
+
       <div class="modal-content">
         <div class="content-header">
           <slot name="header" />
