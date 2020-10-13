@@ -31,7 +31,7 @@ export function createGameStore({
 }
 
 export function createGameLifecycle() {
-  const { subscribe, update, set } = writable({
+  const { subscribe, update } = writable({
     isPlaying: false,
     isEndOfGame: false,
   });
