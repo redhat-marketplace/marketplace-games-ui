@@ -1,21 +1,61 @@
 <style>
   #game-board {
     background: rgba(0, 0, 0, 0.2);
-    width: 50vmin;
-    height: 50vmin;
     border: 1px solid #0d7285;
     display: grid;
     grid-template-rows: repeat(42, 1fr);
     grid-template-columns: repeat(42, 1fr);
     position: relative;
+
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.25) 1px,
+      transparent 0
+    );
+    background-size: var(--grid-overlay-size) var(--grid-overlay-size);
+    background-position: 2% 2%;
+  }
+
+  #game-board,
+  .board-divider,
+  .board-outline {
+    width: 50vmin;
+    height: 50vmin;
+  }
+
+  .board-divider,
+  .board-outline {
+    position: absolute;
+  }
+
+  .board-divider {
+    opacity: 0;
+    height: 1px;
+    top: 25.75vmin;
+    background: #aeefff;
+    animation: disappear 1.25s ease-in reverse;
+  }
+
+  @keyframes disappear {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
   }
 </style>
 
 <script>
   import { onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
+  import { quintInOut } from 'svelte/easing';
 
   import Snake from '../../components/Snake.svelte';
   import Food from '../../components/Food.svelte';
+  import Corners from '../../components/Corners.svelte';
 
   import { dropFirst, dropLast, merge } from '../../utils/base';
   import {
@@ -99,15 +139,39 @@
   };
 
   let currentState = initialState();
+  let show = false;
+  let gridCellSize;
 
   onMount(() => {
     requestAnimationFrame(step(0));
+    // compute grid-size for background overly
+    let foodEl = document.body.getElementsByClassName('food').item(0);
+    gridCellSize =
+      (foodEl &&
+        Math.floor(
+          window.getComputedStyle(foodEl).height.replace(/px$/, '')
+        )) ||
+      18;
+    setTimeout(() => {
+      show = true;
+    }, 0);
   });
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
 
-<div id="game-board">
-  <Snake snakeBodies={currentState.snakeBody} />
-  <Food coordinates={currentState.foodCoordinate} />
-</div>
+{#if show}
+  <div class="board-outline">
+    <div class="board-divider" />
+    <Corners />
+  </div>
+  <div
+    in:fade={{ duration: 1500, delay: 3150, easing: quintInOut }}
+    out:fade
+    id="game-board"
+    style="--grid-overlay-size: {gridCellSize}px"
+  >
+    <Snake snakeBodies={currentState.snakeBody} />
+    <Food coordinates={currentState.foodCoordinate} />
+  </div>
+{/if}
