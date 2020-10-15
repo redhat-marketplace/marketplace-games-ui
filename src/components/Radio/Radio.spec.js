@@ -17,10 +17,7 @@ describe('<Radio />', function () {
         const checkboxEl = container.querySelector(
           `input[value=${mockOption}]`
         );
-        const svg = container.querySelector('svg');
         const labelEl = getByText(mockOption);
-
-        expect(svg).toBeVisible();
 
         await fireEvent.click(checkboxEl);
 
@@ -70,9 +67,7 @@ describe('with default props', () => {
     defaultOptions.forEach((option) => {
       const labelEl = getByText(option);
       const checkboxEl = container.querySelector(`input[value="${option}"`);
-      const svg = container.querySelector('svg');
 
-      expect(svg).toBeVisible();
       expect(labelEl).toBeInTheDocument();
       expect(checkboxEl.checked).toBeFalsy();
     });
