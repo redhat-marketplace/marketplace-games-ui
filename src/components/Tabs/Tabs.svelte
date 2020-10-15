@@ -23,6 +23,7 @@
   li.active > span {
     color: #fff;
   }
+
   li.active:after {
     content: '';
     width: 90%;
