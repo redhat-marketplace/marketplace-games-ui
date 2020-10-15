@@ -106,7 +106,11 @@
         <path d="M25 26.5l5 7.5H14l5-7.5-5-7.5h16l-5 7.5z" id="game-icon-bg" />
       </defs>
       <g transform="translate(-9 -13)" fill="none" fill-rule="evenodd">
-        <use fill="#000" filter="url(#game-icon-filter)" xlink:href="#game-icon-bg" />
+        <use
+          fill="#000"
+          filter="url(#game-icon-filter)"
+          xlink:href="#game-icon-bg"
+        />
         <use fill="#95D58E" xlink:href="#game-icon-bg" />
       </g></svg>
     <h2>{name}</h2>
