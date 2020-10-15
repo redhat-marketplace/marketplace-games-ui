@@ -6,6 +6,7 @@
       rgba(0, 102, 204, 0) 0%,
       rgba(0, 102, 204, 0.15) 100%
     );
+    margin-bottom: 2rem;
     display: flex;
     padding: 0.75rem;
     position: relative;
