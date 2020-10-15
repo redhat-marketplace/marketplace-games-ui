@@ -62,8 +62,15 @@
 </style>
 
 <script>
+  import { currentGame } from '../../store/currentGame';
   import Gradient from './Gradient.svelte';
-  import GameName from './GameName.svelte';
+  import GameName from '../GameName/GameName.svelte';
+  import Score from '../Score/Score.svelte';
+
+  $: scores = [
+    { title: 'Current', score: $currentGame.currentScore },
+    { title: 'PB', score: $currentGame.personalBest },
+  ];
 </script>
 
 <Gradient />
@@ -76,7 +83,8 @@
       <slot />
     </section>
     <aside data-testid="right-rail" class="right-rail">
-      <GameName name="Snake" />
+      <GameName name={$currentGame.name} />
+      <Score {scores} />
     </aside>
   </div>
 </main>
