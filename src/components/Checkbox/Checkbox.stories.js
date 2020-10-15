@@ -6,21 +6,16 @@ export default {
   argTypes: {
     label: { control: 'text' },
     checked: { control: 'boolean' },
-    onChange: { action: 'onChange' },
   },
 };
 
-const Template = ({ onChange, ...args }) => ({
+const Template = ({ ...args }) => ({
   Component: Checkbox,
   props: args,
-  on: {
-    change: onChange,
-  },
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   label: 'Checkbox',
   checked: true,
-  onChange: () => console.log('Checkbox toggled'),
 };
