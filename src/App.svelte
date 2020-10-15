@@ -10,10 +10,8 @@
 </style>
 
 <script>
-  import { currentGameLifecycle } from './store/currentGame';
   import Snake from './games/Snake/index.svelte';
   import Layout from './components/Layout/Layout.svelte';
-  import Button from './components/Button/Button.svelte';
 </script>
 
 <svelte:head>
@@ -25,9 +23,4 @@
 
 <Layout>
   <Snake />
-  {#if !$currentGameLifecycle.isPlaying}
-    <Button on:click={() => currentGameLifecycle.setIsPlaying(true)}>
-      Start
-    </Button>
-  {/if}
 </Layout>
