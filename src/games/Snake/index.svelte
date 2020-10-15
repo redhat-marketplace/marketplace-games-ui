@@ -12,10 +12,9 @@
 </style>
 
 <script>
-  import { onMount } from 'svelte';
-
-  import Snake from '../../components/Snake.svelte';
-  import Food from '../../components/Food.svelte';
+  import { currentGame, currentGameLifecycle } from '../../store/currentGame';
+  import Snake from './Snake.svelte';
+  import Food from './Food.svelte';
 
   import { dropFirst, dropLast, merge } from '../../utils/base';
   import {
@@ -50,12 +49,13 @@
     const isGameOver = willCollide(state);
 
     if (isGameOver) {
-      return [];
+      throw Error('game over');
+    } else if (willEat(state)) {
+      currentGame.incrementScore();
+      return [nextHeadCoordinate(state), ...state.snakeBody];
+    } else {
+      return [nextHeadCoordinate(state), ...dropLast(state.snakeBody)];
     }
-
-    return willEat(state)
-      ? [nextHeadCoordinate(state), ...state.snakeBody]
-      : [nextHeadCoordinate(state), ...dropLast(state.snakeBody)];
   };
   const enqueue = (state, move) =>
     isValidMove(move, state)
@@ -90,24 +90,33 @@
     }
   };
   const step = (currentTime) => (lastRenderedTime) => {
-    if (lastRenderedTime - currentTime > 1000 / FRAMES_PER_SECOND) {
-      currentState = nextState(currentState);
-      requestAnimationFrame(step(lastRenderedTime));
-    } else {
-      requestAnimationFrame(step(currentTime));
+    try {
+      if ($currentGameLifecycle.isPlaying) {
+        if (lastRenderedTime - currentTime > 1000 / FRAMES_PER_SECOND) {
+          currentState = nextState(currentState);
+          requestAnimationFrame(step(lastRenderedTime));
+        } else {
+          requestAnimationFrame(step(currentTime));
+        }
+      }
+    } catch {
+      currentGameLifecycle.setIsEndOfGame(true);
+      currentGame.setPersonalBest($currentGame.currentScore);
+      currentGame.resetCurrentScore();
+      currentState = initialState();
     }
   };
 
   let currentState = initialState();
 
-  onMount(() => {
+  $: if ($currentGameLifecycle.isPlaying) {
     requestAnimationFrame(step(0));
-  });
+  }
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
 
-<div id="game-board">
+<div id="game-board" data-testid="game-board">
   <Snake snakeBodies={currentState.snakeBody} />
   <Food coordinates={currentState.foodCoordinate} />
 </div>
