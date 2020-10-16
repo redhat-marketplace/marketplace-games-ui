@@ -31,6 +31,15 @@
   // milliseconds between re-renders
   let FRAMES_PER_SECOND = 15;
 
+  let difficultyLevels = {
+    Easy: 15,
+    Medium: 20,
+    Hard: 30,
+  };
+
+  currentGame.setGameDifficulty('Easy');
+  currentGame.setGameLevels(Object.keys(difficultyLevels));
+
   const initialState = () => ({
     gridSize: GRID_SIZE,
     columns: GRID_SIZE,
@@ -92,6 +101,12 @@
   };
   const step = (currentTime) => (lastRenderedTime) => {
     try {
+      if (
+        !(FRAMES_PER_SECOND === difficultyLevels[$currentGame.gameDifficulty])
+      ) {
+        FRAMES_PER_SECOND = difficultyLevels[$currentGame.gameDifficulty];
+      }
+
       if ($currentGameLifecycle.isPlaying) {
         if (lastRenderedTime - currentTime > 1000 / FRAMES_PER_SECOND) {
           currentState = nextState(currentState);

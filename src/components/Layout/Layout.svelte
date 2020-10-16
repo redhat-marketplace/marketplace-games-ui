@@ -70,6 +70,7 @@
   import Gradient from './Gradient.svelte';
   import GameName from '../GameName/GameName.svelte';
   import Score from '../Score/Score.svelte';
+  import Difficulty from '../Difficulty/Difficulty.svelte';
 
   $: scores = [
     { title: 'Current', score: $currentGame.currentScore },
@@ -89,6 +90,11 @@
     <aside data-testid="right-rail" class="right-rail">
       <GameName name={$currentGame.name} />
       <Score {scores} />
+      <Difficulty
+        selected={$currentGame.gameDifficulty}
+        options={$currentGame.gameLevels}
+        on:change={(evt) => currentGame.setGameDifficulty(evt.target.value)}
+      />
     </aside>
   </div>
 </main>
