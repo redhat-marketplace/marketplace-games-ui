@@ -1,20 +1,28 @@
 <style>
   div {
-    width: fit-content;
-    height: 40px;
+    height: 100%;
+  }
+
+  div,
+  label {
+    display: flex;
+    align-items: center;
   }
 
   input {
-    display: none;
+    width: 0px;
+    height: 0px;
+    position: absolute;
   }
   .container {
     position: relative;
     padding: 0 14px;
-    width: fit-content;
     background: url('/images/radio-background.svg') no-repeat top 0 right 0;
     overflow: visible;
     background-position: center;
-    height: 40px;
+    justify-content: center;
+    height: calc(var(--options-cnt) * 16px);
+    min-width: calc(var(--options-cnt) * 70px);
   }
 
   .selected {
@@ -25,11 +33,15 @@
     background: linear-gradient(transparent, rgba(0, 159, 232, 0.15));
   }
 
+  label:hover {
+    cursor: pointer;
+  }
   label {
-    display: inline-block;
-    padding: 0 10px;
-    padding-top: 10px;
     color: #fff;
+    height: 65%;
+    padding: 0 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
   }
 
   label:not(.selected) {
@@ -43,7 +55,7 @@
 </script>
 
 {#if options}
-  <div class="container">
+  <div class="container" style="--options-cnt: {Math.max(2, options.length)}">
     <div>
       {#each options as value}
         <label class:selected={value === selected}>
