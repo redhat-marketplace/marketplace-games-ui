@@ -1,8 +1,8 @@
 <style>
   #game-board {
     background: rgba(0, 0, 0, 0.2);
-    width: 50vmin;
-    height: 50vmin;
+    width: 75vmin;
+    height: 75vmin;
     border: 1px solid #0d7285;
     display: grid;
     grid-template-rows: repeat(42, 1fr);
@@ -13,6 +13,7 @@
 
 <script>
   import { currentGame, currentGameLifecycle } from '../../store/currentGame';
+  import GameStateModal from './GameStateModal.svelte';
   import Snake from './Snake.svelte';
   import Food from './Food.svelte';
 
@@ -102,7 +103,6 @@
     } catch {
       currentGameLifecycle.setIsEndOfGame(true);
       currentGame.setPersonalBest($currentGame.currentScore);
-      currentGame.resetCurrentScore();
       currentState = initialState();
     }
   };
@@ -117,6 +117,7 @@
 <svelte:window on:keydown={onKeyDown} />
 
 <div id="game-board" data-testid="game-board">
+  <GameStateModal />
   <Snake snakeBodies={currentState.snakeBody} />
   <Food coordinates={currentState.foodCoordinate} />
 </div>

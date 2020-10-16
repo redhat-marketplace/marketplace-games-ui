@@ -90,7 +90,7 @@
           width="212.5%"
           height="220%"
           filterUnits="objectBoundingBox"
-          id="a"
+          id="game-icon-filter"
         >
           <feOffset in="SourceAlpha" result="shadowOffsetOuter1" />
           <feGaussianBlur
@@ -103,11 +103,15 @@
             in="shadowBlurOuter1"
           />
         </filter>
-        <path d="M25 26.5l5 7.5H14l5-7.5-5-7.5h16l-5 7.5z" id="b" />
+        <path d="M25 26.5l5 7.5H14l5-7.5-5-7.5h16l-5 7.5z" id="game-icon-bg" />
       </defs>
       <g transform="translate(-9 -13)" fill="none" fill-rule="evenodd">
-        <use fill="#000" filter="url(#a)" xlink:href="#b" />
-        <use fill="#95D58E" xlink:href="#b" />
+        <use
+          fill="#000"
+          filter="url(#game-icon-filter)"
+          xlink:href="#game-icon-bg"
+        />
+        <use fill="#95D58E" xlink:href="#game-icon-bg" />
       </g></svg>
     <h2>{name}</h2>
   </div>
