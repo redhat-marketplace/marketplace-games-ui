@@ -53,6 +53,10 @@
   }
 
   .left-rail {
+    align-items: center;
+    background: url('/images/content-divider.svg') no-repeat top 0 right 1.5rem;
+    background-size: auto 100%;
+    padding-right: 3rem;
     width: 75%;
   }
 
