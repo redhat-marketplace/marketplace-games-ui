@@ -33,7 +33,7 @@
 
   let difficultyLevels = {
     Easy: 15,
-    Medium: 20,
+    Normal: 20,
     Hard: 30,
   };
 

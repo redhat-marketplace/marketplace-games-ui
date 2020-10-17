@@ -14,7 +14,7 @@
 
 <Block title="Difficulty">
   <p class="help-text" data-testid="help-text">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Changing the difficulty will increase or decrease the speed at which the snake travels.
   </p>
-  <Radio {...$$props} on:change />
+  <Radio {...$$restProps} on:change />
 </Block>

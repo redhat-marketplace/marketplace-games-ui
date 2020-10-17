@@ -38,8 +38,8 @@
   }
   label {
     color: #fff;
-    height: 65%;
-    padding: 0 12px;
+    height: 70%;
+    padding: 0 15px;
     font-size: 0.875rem;
     font-weight: 500;
   }

@@ -6,7 +6,7 @@ describe('<Difficulty />', function () {
   it('should render the helper text', function () {
     render(Difficulty);
 
-    expect(screen.getByText(/Lorem ipsum/i)).toBeInTheDocument();
+    expect(screen.getByText(/Changing the difficulty/i)).toBeInTheDocument();
   });
 
   it('should render a heading with "Difficulty"', () => {
