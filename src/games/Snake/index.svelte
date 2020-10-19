@@ -33,7 +33,7 @@
     height: 1px;
     top: 25.75vmin;
     background: #aeefff;
-    animation: disappear 1.25s ease-in reverse;
+    animation: disappear 1s ease-in reverse;
   }
 
   @keyframes disappear {
@@ -53,9 +53,7 @@
   import { fade } from 'svelte/transition';
   import { quintInOut } from 'svelte/easing';
 
-  // import Snake from '../../components/Snake.svelte';
-  // import Food from '../../components/Food.svelte';
-  import Corners from '../../components/Corners.svelte';
+  import Corners from '../../components/Corners/Corners.svelte';
   import { currentGame, currentGameLifecycle } from '../../store/currentGame';
   import GameStateModal from './GameStateModal.svelte';
   import Snake from './Snake.svelte';
@@ -173,11 +171,22 @@
   let fadeOptions = {
     duration: 1500,
     delay: 3150,
-    easing: quintInOut
-  }
+    easing: quintInOut,
+  };
 
   $: if ($currentGameLifecycle.isPlaying) {
     requestAnimationFrame(step(0));
+  }
+
+  function calcDotSize() {
+    // compute dot grid-size for background overly
+    let foodEl = document.body.getElementsByClassName('food').item(0);
+    gridCellSize =
+      (foodEl &&
+        Math.floor(
+          window.getComputedStyle(foodEl).height.replace(/px$/, '')
+        )) ||
+      18;
   }
 
   onMount(() => {
@@ -185,19 +194,12 @@
       show = true;
     }, 0);
     setTimeout(() => {
-      // compute grid-size for background overly
-      let foodEl = document.body.getElementsByClassName('food').item(0);
-      gridCellSize =
-        (foodEl &&
-          Math.floor(
-            window.getComputedStyle(foodEl).height.replace(/px$/, '')
-          )) ||
-        18;
+      calcDotSize();
     }, fadeOptions.delay);
   });
 </script>
 
-<svelte:window on:keydown={onKeyDown} />
+<svelte:window on:keydown={onKeyDown} on:resize={calcDotSize} />
 
 {#if show}
   <div class="board-outline">

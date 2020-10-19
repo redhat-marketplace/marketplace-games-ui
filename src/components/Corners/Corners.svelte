@@ -27,19 +27,19 @@
   .lines {
     background: transparent;
     position: absolute;
-    border: transparent;
+    border: 1px solid transparent;
     margin: 0 auto;
     height: 3%;
     width: 3%;
     left: 50%;
     top: 50%;
     transition: height 0.5s ease-in-out, width 0.5s ease-in-out,
-      left 0.5s ease-in-out, top 0.5s ease-in-out, border 0.5s linear 2.25s;
+      left 0.5s ease-in-out, top 0.5s ease-in-out, border 0.5s linear 2s;
   }
 
   .lines:before {
-    border-top: 1px solid rgba(0, 102, 205, 0.7);
-    border-bottom: 1px solid rgba(0, 102, 205, 0.7);
+    border-top: 1px solid rgba(0, 95, 96, 0.7);
+    border-bottom: 1px solid rgba(0, 95, 96, 0.7);
     animation: animateX 1.5s ease-in-out 2s;
     transform-origin: 100% 50%;
     transition: transform 2s ease-in-out;
@@ -47,8 +47,8 @@
   }
 
   .lines:after {
-    border-left: 1px solid rgba(0, 102, 205, 0.7);
-    border-right: 1px solid rgba(0, 102, 205, 0.7);
+    border-left: 1px solid rgba(0, 95, 96, 0.7);
+    border-right: 1px solid rgba(0, 95, 96, 0.7);
     animation: animateY 1.5s ease-in-out reverse 2s;
     transform-origin: 50% 100%;
     transform: scaleY(0);
@@ -117,8 +117,7 @@
         svgContainerRef.style.top = '-2.5%';
         svgContainerRef.style.left = '-2.5%';
         svgContainerRef.style.zIndex = '-1';
-        svgContainerRef.style.border = '1px solid rgba(0, 102, 205, .85)';
-        svgContainerRef.style.border = '1px solid rgba(0, 102, 205, .85)';
+        svgContainerRef.style.border = '1px solid rgba(0, 95, 96, .85)';
       }
     }, cornerDrawOpts.duration);
   });
