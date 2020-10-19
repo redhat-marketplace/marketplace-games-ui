@@ -9,7 +9,7 @@
 
     background-image: radial-gradient(
       circle at 1px 1px,
-      rgba(255, 255, 255, 0.25) 1px,
+      rgba(255, 255, 255, 0.15) 1px,
       transparent 0
     );
     background-size: var(--grid-overlay-size) var(--grid-overlay-size);
