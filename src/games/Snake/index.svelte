@@ -53,9 +53,13 @@
   import { fade } from 'svelte/transition';
   import { quintInOut } from 'svelte/easing';
 
-  import Snake from '../../components/Snake.svelte';
-  import Food from '../../components/Food.svelte';
+  // import Snake from '../../components/Snake.svelte';
+  // import Food from '../../components/Food.svelte';
   import Corners from '../../components/Corners.svelte';
+  import { currentGame, currentGameLifecycle } from '../../store/currentGame';
+  import GameStateModal from './GameStateModal.svelte';
+  import Snake from './Snake.svelte';
+  import Food from './Food.svelte';
 
   import { dropFirst, dropLast, merge } from '../../utils/base';
   import {
@@ -70,6 +74,15 @@
 
   // milliseconds between re-renders
   let FRAMES_PER_SECOND = 15;
+
+  let difficultyLevels = {
+    Easy: 15,
+    Normal: 20,
+    Hard: 30,
+  };
+
+  currentGame.setGameDifficulty('Easy');
+  currentGame.setGameLevels(Object.keys(difficultyLevels));
 
   const initialState = () => ({
     gridSize: GRID_SIZE,
@@ -90,12 +103,13 @@
     const isGameOver = willCollide(state);
 
     if (isGameOver) {
-      return [];
+      throw Error('game over');
+    } else if (willEat(state)) {
+      currentGame.incrementScore();
+      return [nextHeadCoordinate(state), ...state.snakeBody];
+    } else {
+      return [nextHeadCoordinate(state), ...dropLast(state.snakeBody)];
     }
-
-    return willEat(state)
-      ? [nextHeadCoordinate(state), ...state.snakeBody]
-      : [nextHeadCoordinate(state), ...dropLast(state.snakeBody)];
   };
   const enqueue = (state, move) =>
     isValidMove(move, state)
@@ -130,11 +144,25 @@
     }
   };
   const step = (currentTime) => (lastRenderedTime) => {
-    if (lastRenderedTime - currentTime > 1000 / FRAMES_PER_SECOND) {
-      currentState = nextState(currentState);
-      requestAnimationFrame(step(lastRenderedTime));
-    } else {
-      requestAnimationFrame(step(currentTime));
+    try {
+      if (
+        !(FRAMES_PER_SECOND === difficultyLevels[$currentGame.gameDifficulty])
+      ) {
+        FRAMES_PER_SECOND = difficultyLevels[$currentGame.gameDifficulty];
+      }
+
+      if ($currentGameLifecycle.isPlaying) {
+        if (lastRenderedTime - currentTime > 1000 / FRAMES_PER_SECOND) {
+          currentState = nextState(currentState);
+          requestAnimationFrame(step(lastRenderedTime));
+        } else {
+          requestAnimationFrame(step(currentTime));
+        }
+      }
+    } catch {
+      currentGameLifecycle.setIsEndOfGame(true);
+      currentGame.setPersonalBest($currentGame.currentScore);
+      currentState = initialState();
     }
   };
 
@@ -142,19 +170,30 @@
   let show = false;
   let gridCellSize;
 
-  onMount(() => {
+  let fadeOptions = {
+    duration: 1500,
+    delay: 3150,
+    easing: quintInOut
+  }
+
+  $: if ($currentGameLifecycle.isPlaying) {
     requestAnimationFrame(step(0));
-    // compute grid-size for background overly
-    let foodEl = document.body.getElementsByClassName('food').item(0);
-    gridCellSize =
-      (foodEl &&
-        Math.floor(
-          window.getComputedStyle(foodEl).height.replace(/px$/, '')
-        )) ||
-      18;
+  }
+
+  onMount(() => {
     setTimeout(() => {
       show = true;
     }, 0);
+    setTimeout(() => {
+      // compute grid-size for background overly
+      let foodEl = document.body.getElementsByClassName('food').item(0);
+      gridCellSize =
+        (foodEl &&
+          Math.floor(
+            window.getComputedStyle(foodEl).height.replace(/px$/, '')
+          )) ||
+        18;
+    }, fadeOptions.delay);
   });
 </script>
 
@@ -166,11 +205,13 @@
     <Corners />
   </div>
   <div
-    in:fade={{ duration: 1500, delay: 3150, easing: quintInOut }}
+    in:fade={fadeOptions}
     out:fade
     id="game-board"
+    data-testid="game-board"
     style="--grid-overlay-size: {gridCellSize}px"
   >
+    <GameStateModal />
     <Snake snakeBodies={currentState.snakeBody} />
     <Food coordinates={currentState.foodCoordinate} />
   </div>

@@ -53,6 +53,10 @@
   }
 
   .left-rail {
+    align-items: center;
+    background: url('/images/content-divider.svg') no-repeat top 0 right 1.5rem;
+    background-size: auto 100%;
+    padding-right: 3rem;
     width: 75%;
   }
 
@@ -62,8 +66,16 @@
 </style>
 
 <script>
+  import { currentGame } from '../../store/currentGame';
   import Gradient from './Gradient.svelte';
-  import GameName from './GameName.svelte';
+  import GameName from '../GameName/GameName.svelte';
+  import Score from '../Score/Score.svelte';
+  import Difficulty from '../Difficulty/Difficulty.svelte';
+
+  $: scores = [
+    { title: 'Current', score: $currentGame.currentScore },
+    { title: 'PB', score: $currentGame.personalBest },
+  ];
 </script>
 
 <Gradient />
@@ -76,7 +88,13 @@
       <slot />
     </section>
     <aside data-testid="right-rail" class="right-rail">
-      <GameName name="Snake" />
+      <GameName name={$currentGame.name} />
+      <Score {scores} />
+      <Difficulty
+        selected={$currentGame.gameDifficulty}
+        options={$currentGame.gameLevels}
+        on:change={(evt) => currentGame.setGameDifficulty(evt.target.value)}
+      />
     </aside>
   </div>
 </main>

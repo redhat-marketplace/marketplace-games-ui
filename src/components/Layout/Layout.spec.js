@@ -24,4 +24,8 @@ describe('<Layout />', function () {
   it('should render the game name', function () {
     expect(screen.getByRole('heading', { name: /Snake/i })).toBeInTheDocument();
   });
+
+  it('should render the game score', function () {
+    expect(screen.getByRole('heading', { name: /Score/i })).toBeInTheDocument();
+  });
 });

@@ -11,7 +11,7 @@
 
 <script>
   import Snake from './games/Snake/index.svelte';
-  import Layout from './components/Layout.svelte';
+  import Layout from './components/Layout/Layout.svelte';
 </script>
 
 <svelte:head>
