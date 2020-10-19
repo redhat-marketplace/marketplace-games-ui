@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/svelte';
+import { render, screen, waitFor } from '@testing-library/svelte';
 
 import App from './App.svelte';
 
@@ -12,7 +12,9 @@ describe('<App />', function () {
     expect(screen.getByRole('complementary')).toBeInTheDocument();
   });
 
-  it('should render a game', function () {
-    expect(screen.getByTestId('game-board')).toBeInTheDocument();
+  it('should render a game', async function () {
+    await waitFor(() =>
+      expect(screen.getByTestId('game-board')).toBeInTheDocument()
+    );
   });
 });
