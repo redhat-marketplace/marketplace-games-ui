@@ -11,6 +11,10 @@
     padding-left: var(--icon-padding);
   }
 
+  input::placeholder {
+    color: #8a8d90;
+  }
+
   input:focus,
   p:hover input {
     outline: none;
