@@ -14,7 +14,7 @@ packages/*/build/
 packages/*/examples/*/build/
 packages/charts/src/utils/color-exports.json
 storybook-static
-public/build
+client/public/build
 
 # Logs.
 *.log
