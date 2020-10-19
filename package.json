@@ -13,7 +13,7 @@
     "lint": "eslint src",
     "test": "yarn test:unit",
     "test:unit": "cross-env BABEL_ENV=test jest",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "yarn build && build-storybook"
   },
   "devDependencies": {
