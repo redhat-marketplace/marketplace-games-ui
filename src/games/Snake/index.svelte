@@ -28,6 +28,27 @@
 
   import { DIRECTION, DIRECTION_VECTOR, GRID_SIZE } from './constants';
 
+  async function endGame() {
+    try {
+      currentGameLifecycle.setIsEndOfGame(true);
+      currentGame.setPersonalBest($currentGame.currentScore);
+      currentState = initialState();
+
+      if ($currentGameLifecycle.currentGameId) {
+        await fetch(
+          `http://localhost:8080/games/api/snake/${$currentGameLifecycle.currentGameId}`,
+          {
+            method: 'PUT',
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json' },
+          }
+        );
+      }
+    } catch (e) {
+      console.error(`An error occurred when attempting end the game: ${e}`);
+    }
+  }
+
   // milliseconds between re-renders
   let FRAMES_PER_SECOND = 15;
 
@@ -101,9 +122,7 @@
         }
       }
     } catch {
-      currentGameLifecycle.setIsEndOfGame(true);
-      currentGame.setPersonalBest($currentGame.currentScore);
-      currentState = initialState();
+      endGame();
     }
   };
 
