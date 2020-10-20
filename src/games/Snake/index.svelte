@@ -1,26 +1,28 @@
 <style>
   #game-board {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
     border: 1px solid #0d7285;
     display: grid;
     grid-template-rows: repeat(42, 1fr);
     grid-template-columns: repeat(42, 1fr);
     position: relative;
 
+    top: 2.5%;
     background-image: radial-gradient(
       circle at 1px 1px,
-      rgba(255, 255, 255, 0.15) 1px,
+      rgba(255, 255, 255, 0.1) 1px,
       transparent 0
     );
-    background-size: var(--grid-overlay-size) var(--grid-overlay-size);
+    background-size: var(--grid-cell-size) var(--grid-cell-size);
     background-position: 2% 2%;
   }
 
   #game-board,
   .board-divider,
   .board-outline {
-    width: 50vmin;
-    height: 50vmin;
+    width: var(--board-size);
+    height: var(--board-size);
+    transition: height 0.15s ease-in-out, width 0.15s ease-in-out;
   }
 
   .board-divider,
@@ -31,8 +33,8 @@
   .board-divider {
     opacity: 0;
     height: 1px;
-    top: 25.75vmin;
-    background: #aeefff;
+    top: 52.5%;
+    background: #009596;
     animation: disappear 1s ease-in reverse;
   }
 
@@ -168,7 +170,7 @@
   let show = false;
   let gridCellSize;
 
-  let fadeOptions = {
+  let fadeOpts = {
     duration: 1500,
     delay: 3150,
     easing: quintInOut,
@@ -195,7 +197,7 @@
     }, 0);
     setTimeout(() => {
       calcDotSize();
-    }, fadeOptions.delay);
+    }, fadeOpts.delay);
   });
 </script>
 
@@ -207,11 +209,11 @@
     <Corners />
   </div>
   <div
-    in:fade={fadeOptions}
+    in:fade={fadeOpts}
     out:fade
     id="game-board"
     data-testid="game-board"
-    style="--grid-overlay-size: {gridCellSize}px"
+    style="--grid-cell-size: {gridCellSize}px"
   >
     <GameStateModal />
     <Snake snakeBodies={currentState.snakeBody} />

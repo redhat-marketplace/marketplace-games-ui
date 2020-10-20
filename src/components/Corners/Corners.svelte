@@ -114,7 +114,7 @@
       if (animate) {
         svgContainerRef.style.height = '105%';
         svgContainerRef.style.width = '105%';
-        svgContainerRef.style.top = '-2.5%';
+        svgContainerRef.style.top = '0';
         svgContainerRef.style.left = '-2.5%';
         svgContainerRef.style.zIndex = '-1';
         svgContainerRef.style.border = '1px solid rgba(0, 95, 96, .85)';
