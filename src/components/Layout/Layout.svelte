@@ -76,6 +76,8 @@
     { title: 'Current', score: $currentGame.currentScore },
     { title: 'PB', score: $currentGame.personalBest },
   ];
+
+  let boardSize;
 </script>
 
 <Gradient />
@@ -84,7 +86,12 @@
 </header>
 <main>
   <div class="container">
-    <section data-testid="left-rail" class="left-rail">
+    <section
+      data-testid="left-rail"
+      class="left-rail"
+      bind:clientWidth={boardSize}
+      style="--board-size: {boardSize - 136}px"
+    >
       <slot />
     </section>
     <aside data-testid="right-rail" class="right-rail">

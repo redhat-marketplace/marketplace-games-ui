@@ -1,17 +1,64 @@
 <style>
   #game-board {
-    background: rgba(0, 0, 0, 0.2);
-    width: 75vmin;
-    height: 75vmin;
+    background: rgba(0, 0, 0, 0.1);
     border: 1px solid #0d7285;
     display: grid;
     grid-template-rows: repeat(42, 1fr);
     grid-template-columns: repeat(42, 1fr);
     position: relative;
+
+    top: 2.5%;
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 0
+    );
+    background-size: var(--grid-cell-size) var(--grid-cell-size);
+    background-position: 2% 2%;
+  }
+
+  #game-board,
+  .board-divider,
+  .board-outline {
+    margin: 0 auto;
+    width: var(--board-size);
+    height: var(--board-size);
+    transition: height 0.15s ease-in-out, width 0.15s ease-in-out;
+  }
+
+  .board-divider,
+  .board-outline {
+    position: absolute;
+    left: 0;
+    right: 48px;
+  }
+
+  .board-divider {
+    opacity: 0;
+    height: 1px;
+    top: 52.5%;
+    background: #009596;
+    animation: disappear 1s ease-in reverse;
+  }
+
+  @keyframes disappear {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
   }
 </style>
 
 <script>
+  import { onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
+  import { quintInOut } from 'svelte/easing';
+
+  import Corners from '../../components/Corners/Corners.svelte';
   import { currentGame, currentGameLifecycle } from '../../store/currentGame';
   import GameStateModal from './GameStateModal.svelte';
   import Snake from './Snake.svelte';
@@ -123,16 +170,56 @@
   };
 
   let currentState = initialState();
+  let show = false;
+  let gridCellSize;
+
+  let fadeOpts = {
+    duration: 1500,
+    delay: 3150,
+    easing: quintInOut,
+  };
 
   $: if ($currentGameLifecycle.isPlaying) {
     requestAnimationFrame(step(0));
   }
+
+  function calcDotSize() {
+    // compute dot grid-size for background overly
+    let foodEl = document.body.getElementsByClassName('food').item(0);
+    gridCellSize =
+      (foodEl &&
+        Math.floor(
+          window.getComputedStyle(foodEl).height.replace(/px$/, '')
+        )) ||
+      18;
+  }
+
+  onMount(() => {
+    setTimeout(() => {
+      show = true;
+    }, 0);
+    setTimeout(() => {
+      calcDotSize();
+    }, fadeOpts.delay);
+  });
 </script>
 
-<svelte:window on:keydown={onKeyDown} />
+<svelte:window on:keydown={onKeyDown} on:resize={calcDotSize} />
 
-<div id="game-board" data-testid="game-board">
-  <GameStateModal />
-  <Snake snakeBodies={currentState.snakeBody} />
-  <Food coordinates={currentState.foodCoordinate} />
-</div>
+{#if show}
+  <div class="board-outline">
+    <div class="board-divider" />
+    <Corners />
+  </div>
+  <div
+    in:fade={fadeOpts}
+    out:fade
+    id="game-board"
+    data-testid="game-board"
+    style="--grid-cell-size: {gridCellSize}px"
+  >
+    <GameStateModal />
+    <Snake snakeBodies={currentState.snakeBody} />
+    <Food coordinates={currentState.foodCoordinate} />
+  </div>
+{/if}
