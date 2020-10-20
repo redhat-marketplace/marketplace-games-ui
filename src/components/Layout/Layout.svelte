@@ -90,7 +90,7 @@
       data-testid="left-rail"
       class="left-rail"
       bind:clientWidth={boardSize}
-      style="--board-size: {boardSize - 72}px"
+      style="--board-size: {boardSize - 136}px"
     >
       <slot />
     </section>

@@ -20,6 +20,7 @@
   #game-board,
   .board-divider,
   .board-outline {
+    margin: 0 auto;
     width: var(--board-size);
     height: var(--board-size);
     transition: height 0.15s ease-in-out, width 0.15s ease-in-out;
@@ -28,6 +29,8 @@
   .board-divider,
   .board-outline {
     position: absolute;
+    left: 0;
+    right: 48px;
   }
 
   .board-divider {
