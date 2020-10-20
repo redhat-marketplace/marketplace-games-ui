@@ -1,10 +1,11 @@
 package main
 
 import (
-	rice "github.com/GeertJohan/go.rice"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"log"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/redhat-marketplace/marketplace-games-ui/backend/controllers"
+	"github.com/redhat-marketplace/marketplace-games-ui/backend/controllers/snake"
 	"os"
 )
 
@@ -13,10 +14,6 @@ var port = "8080"
 var ginMode = "debug"
 
 func main() {
-	appBox, err := rice.FindBox("../client/public")
-	if err != nil {
-		log.Fatal(err)
-	}
 	envHost, ok := os.LookupEnv("HOST")
 	if ok {
 		host = envHost
@@ -35,11 +32,24 @@ func main() {
 		println("Got Gin mode from environment: " + ginMode)
 	}
 
+	//appBox, err := rice.FindBox("../client/public")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+
 	gin.SetMode(ginMode)
 	r := gin.Default()
 	r.Use(cors.Default())
 
-	r.StaticFS("/", appBox.HTTPBox())
+	r.GET("/status/ping", controllers.Ping)
+	r.GET("/metrics", gin.WrapH(promhttp.Handler()))
+
+	r.POST("/games/api/snake", snake.StartGame)
+	r.GET("/games/api/snake/:id", snake.GetGame)
+	r.GET("/games/api/snake", snake.GetGames)
+	r.PUT("/games/api/snake/:id", snake.EndGame)
+
+	//r.StaticFS("/", appBox.HTTPBox())
 
 	println("Started on " + host + ":" + port)
 
