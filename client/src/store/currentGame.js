@@ -48,7 +48,7 @@ export function createGameLifecycle() {
   return {
     subscribe,
     setCurrentGameId: (currentGameId) =>
-        update((self) => ({ ...self, currentGameId })),
+      update((self) => ({ ...self, currentGameId })),
     setIsPlaying: (isPlaying) => update((self) => ({ ...self, isPlaying })),
     setIsEndOfGame: () =>
       update((self) => ({
