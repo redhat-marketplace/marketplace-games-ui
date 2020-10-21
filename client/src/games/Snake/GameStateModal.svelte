@@ -26,9 +26,21 @@
   import Modal from '../../components/Modal/Modal.svelte';
   import Button from '../../components/Button/Button.svelte';
 
-  function newGame() {
-    currentGame.resetCurrentScore();
-    currentGameLifecycle.setIsPlaying(true);
+  async function newGame() {
+    try {
+      const res = await fetch(`http://localhost:8080/games/api/snake`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const game = await res.json();
+      currentGameLifecycle.setCurrentGameId(game.id);
+    } catch (e) {
+      console.error(`An error occurred when attempting start the game: ${e}`);
+    } finally {
+      currentGame.resetCurrentScore();
+      currentGameLifecycle.setIsPlaying(true);
+    }
   }
 </script>
 
@@ -42,8 +54,6 @@
     <Button on:click={newGame}>New game</Button>
   {:else}
     <h2 class="header">Ready to play?</h2>
-    <Button on:click={() => currentGameLifecycle.setIsPlaying(true)}>
-      Start
-    </Button>
+    <Button on:click={newGame}>Start</Button>
   {/if}
 </Modal>

@@ -40,12 +40,15 @@ export function createGameStore({
 
 export function createGameLifecycle() {
   const { subscribe, update } = writable({
+    currentGameId: null,
     isPlaying: false,
     isEndOfGame: false,
   });
 
   return {
     subscribe,
+    setCurrentGameId: (currentGameId) =>
+      update((self) => ({ ...self, currentGameId })),
     setIsPlaying: (isPlaying) => update((self) => ({ ...self, isPlaying })),
     setIsEndOfGame: () =>
       update((self) => ({
