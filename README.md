@@ -57,3 +57,5 @@ go build -o ../service.go
 cd ..
 ./service.go
 ```
+
+Then open `localhost:8080` in your browser.
