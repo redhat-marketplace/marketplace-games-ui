@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/redhat-marketplace/marketplace-games-ui/backend/controllers"
@@ -32,14 +33,11 @@ func main() {
 		println("Got Gin mode from environment: " + ginMode)
 	}
 
-	//appBox, err := rice.FindBox("../client/public")
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-
 	gin.SetMode(ginMode)
 	r := gin.Default()
 	r.Use(cors.Default())
+
+	r.Use(static.Serve("/", static.LocalFile("./dist", true)))
 
 	r.GET("/status/ping", controllers.Ping)
 	r.GET("/metrics", gin.WrapH(promhttp.Handler()))
@@ -48,8 +46,6 @@ func main() {
 	r.GET("/games/api/snake/:id", snake.GetGame)
 	r.GET("/games/api/snake", snake.GetGames)
 	r.PUT("/games/api/snake/:id", snake.EndGame)
-
-	//r.StaticFS("/", appBox.HTTPBox())
 
 	println("Started on " + host + ":" + port)
 

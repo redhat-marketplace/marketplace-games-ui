@@ -2,7 +2,9 @@
   "name": "marketplace-games-ui",
   "version": "1.0.0",
   "scripts": {
+    "prebuild": "rimraf ../dist",
     "build": "cross-env NODE_ENV=production webpack",
+    "postbuild": "cp -r ./public ../dist",
     "dev": "webpack-dev-server --content-base public",
     "ci": "yarn format:diff && yarn lint && yarn test",
     "clean": "rimraf node_modules",

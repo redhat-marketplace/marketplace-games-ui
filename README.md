@@ -1,59 +1,59 @@
-# Marketplace Games UI
+# Marketplace Games
 
-UI for the marketplace-games service
+UI and Backend for the marketplace-games
 
 ## Get started
 
 Install the dependencies...
 
+##### Client
 ```bash
-cd marketplace-games-ui
+cd marketplace-games-ui/client
 yarn install
 ```
 
-...then start [Rollup](https://rollupjs.org):
+##### Service
+```
+cd marketplace-games-ui/backend
+go get
+```
 
+#### Starting development servers
+
+For local development we utilize webpack dev server for the client and proxy all API requests to the backend service running on `localhost:8080`.
+
+##### Client
 ```bash
+cd marketplace-games-ui/client
 yarn dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app
-running. Edit a component file in `src`, save it, and reload the page to see
-your changes.
+Navigate to [localhost:5000](http://localhost:5000). You should see the marketplace games app
+running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
-By default, the server will only respond to requests from localhost. To allow
-connections from other computers, edit the `sirv` commands in package.json to
-include the option `--host 0.0.0.0`.
+##### Service
+```bash
+cd marketplace-games-ui/backend
+go run main.go
+```
 
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we
-recommend installing the official extension
-[Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
-If you are using other editors you may need to install a plugin in order to get
-syntax highlighting and intellisense.
+The backend go server will start on `localhost:8080`
+
 
 ## Building and running in production mode
 
-To create an optimised version of the app:
+#### Build the client
 
 ```bash
+cd marketplace-games-ui/client
 yarn build
 ```
 
-You can run the newly built app with `yarn start`. This uses
-[sirv](https://github.com/lukeed/sirv), which is included in your package.json's
-`dependencies` so that the app will work when you deploy to platforms like
-[Heroku](https://heroku.com).
+#### Build the service
 
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`.
-This is to maximise compatibility with static fileservers, allowing you to
-deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to
-be able to respond to requests for _any_ path. You can make it so by editing the
-`"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
+```bash
+cd marketplace-games-ui/backend
+go build -o ../service.go
+cd ..
+./service.go
 ```
