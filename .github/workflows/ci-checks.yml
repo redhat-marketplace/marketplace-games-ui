@@ -8,6 +8,9 @@ on: [push, pull_request]
 jobs:
   check-packages:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
 
     strategy:
       matrix:
@@ -20,9 +23,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Move to client
-      run: cd client
     - name: Install dependencies
-      run: yarn install
+      run:  yarn install
     - name: Run CI checks
       run: yarn ci
