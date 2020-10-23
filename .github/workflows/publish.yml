@@ -18,7 +18,7 @@ jobs:
         run: docker build -t rhm-arcade .
 
       - name: Tag image
-        run: docker tag "rmh-arcade" "${{ secrets.REGISTRY_REPO }}.${{ secrets.REGISTRY_HOST }}/rhm-arcade:latest"
+        run: docker tag "rhm-arcade" "${{ secrets.REGISTRY_REPO }}.${{ secrets.REGISTRY_HOST }}/rhm-arcade:latest"
 
       - name: Login to artifactory
         run: |
