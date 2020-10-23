@@ -22,4 +22,4 @@ jobs:
           echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login "${{ secrets.REGISTRY_REPO }}.${{ secrets.REGISTRY_HOST }}" -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
 
       - name: Push image to Artifactory
-        run: docker push "${{ secrets.REGISTRY_REPO }}.${{ REGISTRY_HOST }}/rhm-arcade"
+        run: docker push "${{ secrets.REGISTRY_REPO }}.${{ secrets.REGISTRY_HOST }}/rhm-arcade"
