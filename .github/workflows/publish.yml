@@ -20,9 +20,9 @@ jobs:
       - name: Tag image
         run: docker tag "rhm-arcade" "${{ secrets.REGISTRY_REPO }}.${{ secrets.REGISTRY_HOST }}/rhm-arcade:latest"
 
-      - name: Login to artifactory
+      - name: Login to registry
         run: |
           echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login "${{ secrets.REGISTRY_REPO }}.${{ secrets.REGISTRY_HOST }}" -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
 
-      - name: Push image to Artifactory
+      - name: Push image to registry
         run: docker push "${{ secrets.REGISTRY_REPO }}.${{ secrets.REGISTRY_HOST }}/rhm-arcade"
