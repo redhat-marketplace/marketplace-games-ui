@@ -100,8 +100,8 @@ img:not([alt]) {
 	/* Blue scale */
 	--color--blue-50: #E7F1FA;
 	--color--blue-100: #BEE1F4;
-	--color--blue-200: #73BCF7;
-	--color--blue-300: #2B9AF3;
+	--color--blue-200: #73bcf7;
+	--color--blue-300: #2b9af3;
 	--color--blue-400: #06c;
 	--color--blue-500: #004080;
 	--color--blue-600: #002952;
@@ -109,12 +109,12 @@ img:not([alt]) {
 
 	/* Light Blue scale */
 	--color--light-blue-100: #BEEDF9;
-	--color--light-blue-200: #7CDBF3;
-	--color--light-blue-300: #35CAED;
+	--color--light-blue-200: #7cdbf3;
+	--color--light-blue-300: #35caed;
 	--color--light-blue-400: #00B9EF;
 	--color--light-blue-500: #008BAD;
 	--color--light-blue-600: #005C73;
-	--color--light-blue-700: #002D39;
+	--color--light-blue-700: #002d39;
 
 	/* Cyan scale */
 	--color--cyan-50: #F2F9F9;

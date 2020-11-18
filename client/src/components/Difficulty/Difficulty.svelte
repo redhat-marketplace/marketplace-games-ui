@@ -1,9 +1,10 @@
 <style>
   .help-text {
-    font-size: 0.75rem;
+    font-size: var(--spacing--04);
   }
+  
   p {
-    margin-bottom: 0.75rem;
+    margin-bottom: var(--spacing--04);
   }
 </style>
 
