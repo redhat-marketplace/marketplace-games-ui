@@ -1,6 +1,6 @@
-# Marketplace Games
+# Marketplace Games 🕹️
 
-UI and Backend for the marketplace-games
+UI and Backend for the Marketplace Games app
 
 ## Get started
 
@@ -53,9 +53,21 @@ yarn build
 
 ```bash
 cd marketplace-games-ui/backend
-go build -o ../service.go
+go build -o ../service . 
 cd ..
-./service.go
+./service
 ```
 
 Then open `localhost:8080` in your browser.
+
+## Build and run the Marketplace Games via Docker
+
+From root run the following cmd:
+```bash
+docker build -t marketplace-games .
+```
+then after the image has been successfully built run:
+```bash
+docker container -d -p 8080:8080 marketplace-games:latest
+```  
+Once the container is up and running open `localhost:8080` in your browser.

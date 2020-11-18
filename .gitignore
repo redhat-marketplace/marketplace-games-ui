@@ -16,6 +16,7 @@ packages/charts/src/utils/color-exports.json
 storybook-static
 client/public/bundle.*
 service.go
+service
 
 # Logs.
 *.log
