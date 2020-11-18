@@ -2,7 +2,7 @@
   .help-text {
     font-size: var(--spacing--04);
   }
-  
+
   p {
     margin-bottom: var(--spacing--04);
   }
