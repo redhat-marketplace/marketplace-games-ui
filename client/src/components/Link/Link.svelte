@@ -4,19 +4,23 @@
     align-items: center;
     color: inherit;
   }
+
   span[disabled='true'] {
     cursor: not-allowed;
     opacity: 0.45;
   }
+
   a {
-    color: #3284d3;
+    color: var(--color--link);
     text-decoration: none;
   }
+
   a:hover {
-    color: #8cb8df;
+    color: var(--color--link--HOVER);
   }
+
   a:active {
-    color: #3c51b0;
+    color: var(--color--link--ACTIVE);
   }
 </style>
 
