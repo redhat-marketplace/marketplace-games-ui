@@ -4,53 +4,53 @@
   }
 
   input {
-    color: var(--color-one);
+    color: var(--color--white);
     border: none;
-    border-bottom: 1px solid #008bad;
+    border-bottom: 1px solid var(--color--light-blue-500);
     background-color: transparent;
-    padding-left: var(--icon-padding);
+    padding-left: var(--spacing--07);
   }
 
   input::placeholder {
-    color: #8a8d90;
+    color: var(--color--black-500);
   }
 
   input:focus,
   p:hover input {
     outline: none;
-    border-bottom: 1px solid #13f3fe;
+    border-bottom: 1px solid var(--color--light-blue-300);
   }
 
   span {
+    background: transparent;
+    border: 1px solid var(--color--light-blue-500);
+    border-radius: 75%;
+    height: 12px;
+    left: 4px;
     position: absolute;
     top: 4px;
-    left: 4px;
-    border-radius: 75%;
-    background: transparent;
-    border: 1px solid #008bad;
-    height: 12px;
     width: 12px;
   }
 
   span:after {
-    content: '';
-    left: -2px;
-    bottom: -9px;
-    width: 150%;
-    height: 50%;
-    position: absolute;
+    border-top: 1px solid var(--color--light-blue-500);
     border-radius: 75%;
-    border-top: 1px solid #008bad;
+    bottom: -9px;
+    content: '';
+    height: 50%;
+    left: -2px;
+    position: absolute;
+    width: 150%;
   }
 
   input:focus + span,
   p:hover span {
-    border: 1px solid #13f3fe;
+    border: 1px solid var(--color--light-blue-300);
   }
 
   input:focus + span:after,
   p:hover span:after {
-    border-top: 1px solid #13f3fe;
+    border-top: 1px solid var(--color--light-blue-300);
   }
 </style>
 

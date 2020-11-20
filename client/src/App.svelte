@@ -1,11 +1,6 @@
 <style>
-  :global(:root) {
-    --color-one: #fff;
-  }
-
   :global(body) {
     background-color: #06092c;
-    color: var(--color-one);
   }
 </style>
 

@@ -34,15 +34,6 @@ html {
 	scroll-behavior: smooth;
 }
 
-/* Set core body defaults */
-body {
-	font-size: 16px;
-	font-weight: 400;
-	text-rendering: optimizeSpeed;
-	line-height: 1.5;
-	font-family: 'Red Hat Text', sans-serif;
-}
-
 /* Remove list styles on ul, ol elements with a class attribute */
 ul[class],
 ol[class] {
@@ -87,4 +78,84 @@ img:not([alt]) {
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
+}
+
+/* Set core css variables */
+:root {
+	/* Gray scale */
+	--color--white: #FFFFFF;
+	--color--black-100: #FAFAFA;
+	--color--black-150: #F5F5F5;
+	--color--black-200: #F0F0F0;
+	--color--black-300: #D2D2D2;
+	--color--black-400: #B8BBBE;
+	--color--black-500: #8A8D90;
+	--color--black-600: #6A6E73;
+	--color--black-700: #475255;
+	--color--black-800: #3C3F42;
+	--color--black-850: #212427;
+	--color--black-900: #151515;
+	--color--black-1000: #030303;
+
+	/* Blue scale */
+	--color--blue-50: #E7F1FA;
+	--color--blue-100: #BEE1F4;
+	--color--blue-200: #73bcf7;
+	--color--blue-300: #2b9af3;
+	--color--blue-400: #0066CC;
+	--color--blue-500: #004080;
+	--color--blue-600: #002952;
+	--color--blue-700: #001223;
+
+	/* Light Blue scale */
+	--color--light-blue-100: #BEEDF9;
+	--color--light-blue-200: #7CDBF3;
+	--color--light-blue-300: #35caed;
+	--color--light-blue-400: #00B9EF;
+	--color--light-blue-500: #008BAD;
+	--color--light-blue-600: #005C73;
+	--color--light-blue-700: #002d39;
+
+	/* Cyan scale */
+	--color--cyan-50: #F2F9F9;
+	--color--cyan-100: #A2D9D9;
+	--color--cyan-200: #73C5C5;
+	--color--cyan-300: #009596;
+	--color--cyan-400: #005F60;
+	--color--cyan-500: #003737;
+	--color--cyan-600: #002323;
+	--color--cyan-700: #000F0F;
+
+
+	--color--text: var(--color--white);
+	--color--link: var(--color--light-blue-300);
+	--color--link--HOVER: var(--color--light-blue-400);
+	--color--link--ACTIVE: var(--color--light-blue-500);
+
+	--base-font-family: 'Red Hat Text', Arial, sans-serif;
+	--font-weight--regular: 400;
+	--font-weight--medium: 500;
+	--font-weight--bold: 700;
+
+	/* Spacing */
+	--spacing--01: 0.125rem;
+	--spacing--02: 0.25rem;
+	--spacing--03: 0.5rem;
+	--spacing--04: 0.75rem;
+	--spacing--05: 1rem;
+	--spacing--06: 1.5rem;
+	--spacing--07: 2rem;
+	--spacing--08: 2.5rem;
+	--spacing--09: 3rem;
+}
+
+/* Set core body defaults */
+
+body {
+	color: var(--color--text);
+	font-family: var(--base-font-family);
+	font-size: 16px;
+	font-weight: var(--font-weight--regular);
+	line-height: 1.5;
+	text-rendering: optimizeSpeed;
 }

@@ -1,23 +1,23 @@
 <style>
   .header {
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing--07);
     text-transform: uppercase;
   }
 
   .score {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing--07);
     text-transform: uppercase;
   }
 
   .score h3 {
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: var(--spacing--06);
+    font-weight: var(--font-weight--medium);
   }
 
   .score p {
-    color: #00b9e4;
-    margin-bottom: 0.5rem;
+    color: var(--color--light-blue-400);
+    margin-bottom: var(--spacing--03);
   }
 </style>
 

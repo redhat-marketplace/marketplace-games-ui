@@ -5,9 +5,9 @@
 
   .score-block {
     background: url('/images/verticle-divider.svg') no-repeat top 0 right 0;
-    margin-right: 1rem;
-    padding-right: 1.5rem;
-    padding-bottom: 0.75rem;
+    margin-right: var(--spacing--05);
+    padding-right: var(--spacing--06);
+    padding-bottom: var(--spacing--04);
   }
 
   .score-block:last-child {
@@ -17,16 +17,16 @@
   }
 
   .score-block__title {
-    color: #00b9e4;
+    color: var(--color--light-blue-400);
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: var(--font-weight--medium);
     font-size: 0.875rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--spacing--02);
   }
 
   .score-block__score {
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: var(--font-weight--bold);
     font-size: 1.125rem;
   }
 </style>

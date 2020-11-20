@@ -6,9 +6,9 @@
       rgba(0, 102, 204, 0) 0%,
       rgba(0, 102, 204, 0.15) 100%
     );
-    margin-bottom: 2rem;
     display: flex;
-    padding: 0.75rem;
+    margin-bottom: var(--spacing--07);
+    padding: var(--spacing--04);
     position: relative;
   }
 
@@ -19,7 +19,7 @@
   }
 
   .game-icon {
-    margin-right: 1rem;
+    margin-right: var(--spacing--05);
   }
 
   .corner--left--top {

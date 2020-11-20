@@ -1,18 +1,19 @@
 <style>
   .block {
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing--07);
   }
+
   .title {
     background: url('/images/horizontal-divider.svg') no-repeat bottom 0 left 0;
     background-size: 100%;
-    font-weight: 500;
+    font-weight: var(--font-weight--medium);
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.5rem;
+    margin-bottom: var(--spacing--04);
+    padding-bottom: var(--spacing--03);
   }
 
   .block-content {
-    padding: 0 0.75rem 0.75rem;
+    padding: 0 var(--spacing--04) var(--spacing--04);
   }
 </style>
 

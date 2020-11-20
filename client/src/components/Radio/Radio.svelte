@@ -5,24 +5,24 @@
 
   div,
   label {
-    display: flex;
     align-items: center;
+    display: flex;
   }
 
   input {
-    width: 0px;
-    height: 0px;
+    height: 0;
     position: absolute;
+    width: 0;
   }
   .container {
+    background: url('/images/radio-background.svg') no-repeat top 0 right 0;
+    background-position: center;
+    height: calc(var(--options-cnt) * 16px);
+    justify-content: center;
+    min-width: calc(var(--options-cnt) * 70px);
     position: relative;
     padding: 0 14px;
-    background: url('/images/radio-background.svg') no-repeat top 0 right 0;
     overflow: visible;
-    background-position: center;
-    justify-content: center;
-    height: calc(var(--options-cnt) * 16px);
-    min-width: calc(var(--options-cnt) * 70px);
   }
 
   .selected {
@@ -39,7 +39,7 @@
   label {
     color: #fff;
     height: 70%;
-    padding: 0 15px;
+    padding: 0 1rem;
     font-size: 0.875rem;
     font-weight: 500;
   }

@@ -1,19 +1,20 @@
 <style>
   button {
-    padding: 0;
-    min-width: 150px;
-    height: 50px;
-    cursor: pointer;
     background: transparent;
     border: none;
+    cursor: pointer;
+    height: 3.125rem;
+    padding: 0;
+    min-width: 9.375rem;
   }
 
   .btn-content {
-    color: white;
-    display: flex;
     align-items: center;
+    color: var(--color--white);
+    display: flex;
     justify-content: center;
   }
+
   svg,
   .btn-content,
   .container {
@@ -30,16 +31,17 @@
   }
 
   svg {
-    position: absolute;
     left: 0;
-    top: 0;
+    position: absolute;
     overflow: visible;
+    top: 0;
   }
 
   svg use[filter='url(#pri-hover)'],
   svg use[filter='url(#danger-hover)'] {
     display: none;
   }
+
   button:not(.disabled) svg:hover use[filter='url(#pri-hover)'],
   button:not(.disabled) svg:hover use[filter='url(#danger-hover)'] {
     display: inline;
@@ -63,12 +65,12 @@
   let btnInnerColor;
   let colorMap = {
     primary: '#0066CC',
-    secondary: '#0066CC',
+    secondary: '#0066cc',
     danger: '#EE0000',
   };
   let strokeColorMap = {
-    primary: '#73BCF7',
-    secondary: '#0180EB',
+    primary: '#73bcf7',
+    secondary: '#0180eb',
     danger: '#EE0000',
   };
 
