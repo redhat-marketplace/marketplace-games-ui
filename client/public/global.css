@@ -102,14 +102,14 @@ img:not([alt]) {
 	--color--blue-100: #BEE1F4;
 	--color--blue-200: #73bcf7;
 	--color--blue-300: #2b9af3;
-	--color--blue-400: #06c;
+	--color--blue-400: #06C;
 	--color--blue-500: #004080;
 	--color--blue-600: #002952;
 	--color--blue-700: #001223;
 
 	/* Light Blue scale */
 	--color--light-blue-100: #BEEDF9;
-	--color--light-blue-200: #7cdbf3;
+	--color--light-blue-200: #7CDBF3;
 	--color--light-blue-300: #35caed;
 	--color--light-blue-400: #00B9EF;
 	--color--light-blue-500: #008BAD;
