@@ -83,7 +83,7 @@ img:not([alt]) {
 /* Set core css variables */
 :root {
 	/* Gray scale */
-	--color--white: #ffffff;
+	--color--white: #FFFFFF;
 	--color--black-100: #FAFAFA;
 	--color--black-150: #F5F5F5;
 	--color--black-200: #F0F0F0;
@@ -102,7 +102,7 @@ img:not([alt]) {
 	--color--blue-100: #BEE1F4;
 	--color--blue-200: #73bcf7;
 	--color--blue-300: #2b9af3;
-	--color--blue-400: #06C;
+	--color--blue-400: #0066CC;
 	--color--blue-500: #004080;
 	--color--blue-600: #002952;
 	--color--blue-700: #001223;
