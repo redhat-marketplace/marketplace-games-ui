@@ -1,15 +1,22 @@
 package controllers
 
 import (
+	"errors"
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/redhat-marketplace/marketplace-games-ui/backend/models"
+	"log"
 	"time"
 )
 
 var games = make(map[string]models.Game)
+
+const (
+	Started = "Started"
+	Ended   = "Ended"
+)
 
 var gamesCounter = promauto.NewCounter(prometheus.CounterOpts{
 	Namespace: "rhm_games",
@@ -17,40 +24,55 @@ var gamesCounter = promauto.NewCounter(prometheus.CounterOpts{
 	Help:      "The number of games that have been started",
 })
 
-func StartGame(gameType models.GameType) models.Game {
-	var game = models.Game{ID: uuid.New().String(), GameType: gameType, State: models.Started, StartTime: time.Now()}
+func StartGame(gameType string) models.Game {
+	game := models.Game{
+		ID:        uuid.New().String(),
+		GameType:  gameType,
+		State:     Started,
+		StartTime: time.Now(),
+	}
 	games[game.ID] = game
 	gamesCounter.Add(1)
-	fmt.Printf("\nStarted a new game with ID %s.\n", game.ID)
+	log.Println("Started a new ", game.GameType, " game with ID ", game.ID, ".")
 	return game
 }
 
-func GetGame(id string) (models.Game, bool) {
-	fmt.Printf("\nSearching for game with ID %s.\n", id)
+func GetGame(id string) (error, models.Game) {
+	log.Println("Searching for game with ID of", id, ".")
+
 	game, found := games[id]
-	return game, found
+	if !found {
+		return errors.New(fmt.Sprintln("Unable to find game with ID ", id, ".")), game
+	}
+
+	return nil, game
 }
 
 func GetGames() []models.Game {
-	fmt.Printf("Getting all games")
-	var gamesList = make([]models.Game, 0)
+	log.Println("Getting all games.")
+
+	gamesList := make([]models.Game, 0, len(games))
 	for _, game := range games {
 		gamesList = append(gamesList, game)
 	}
-	fmt.Printf("\nReturning %d games.\n", len(gamesList))
+
+	log.Println("Returning ", len(gamesList), " games.")
 	return gamesList
 }
 
-func EndGame(id string) (models.Game, bool) {
-	fmt.Printf("\nEnding for game with ID %s.\n", id)
+func EndGame(id string) (error, models.Game) {
+	log.Println("Ending for game with ID ", id, ".")
 	game, found := games[id]
 
-	if found {
-		game.State = models.Ended
+	if !found {
+		return errors.New(fmt.Sprintln("Unable find game with ID of", id, ".")), game
+	} else {
+		game.State = Ended
 		game.EndTime = time.Now()
 		games[game.ID] = game
-		fmt.Printf("\nEnded game with ID %s.\n", id)
+		log.Println("Ended game with ID ", id, ".")
 	}
-	// Leave the game in the "games" map for a short time after it's ended?
-	return game, found
+
+	// TODO Leave the game in the "games" map for a short time after it's ended?
+	return nil, game
 }
