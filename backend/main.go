@@ -50,6 +50,6 @@ func main() {
 	println("Started on " + host + ":" + port)
 
 	if err := r.Run(host + ":" + port); err != nil {
-		panic("Server could not start.")
+		panic("Server failed to start.")
 	}
 }
