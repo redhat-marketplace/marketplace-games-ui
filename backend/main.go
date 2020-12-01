@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/redhat-marketplace/marketplace-games-ui/backend/controllers"
-	"github.com/redhat-marketplace/marketplace-games-ui/backend/controllers/snake"
+	"github.com/redhat-marketplace/marketplace-games-ui/backend/handlers/snake"
 	"os"
 )
 
@@ -43,11 +43,13 @@ func main() {
 	r.GET("/metrics", gin.WrapH(promhttp.Handler()))
 
 	r.POST("/games/api/snake", snake.StartGame)
-	r.GET("/games/api/snake/:id", snake.GetGame)
 	r.GET("/games/api/snake", snake.GetGames)
+	r.GET("/games/api/snake/:id", snake.GetGame)
 	r.PUT("/games/api/snake/:id", snake.EndGame)
 
 	println("Started on " + host + ":" + port)
 
-	r.Run(host + ":" + port)
+	if err := r.Run(host + ":" + port); err != nil {
+		panic("Server could not start.")
+	}
 }

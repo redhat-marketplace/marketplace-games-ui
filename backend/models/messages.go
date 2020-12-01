@@ -1,6 +1,7 @@
-package controllers
+package models
 
-var Quotes = []string{"Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.",
+var Quotes = []string{
+	"Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.",
 	"You must unlearn what you have learned.",
 	"Try not. Do or do not. There is no try.",
 	"We must wake.",
