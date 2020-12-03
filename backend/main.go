@@ -7,6 +7,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/redhat-marketplace/marketplace-games-ui/backend/controllers"
 	"github.com/redhat-marketplace/marketplace-games-ui/backend/handlers/snake"
+	"log"
 	"os"
 )
 
@@ -14,42 +15,57 @@ var host = "localhost"
 var port = "8080"
 var ginMode = "debug"
 
+type Server struct {
+	Router *gin.Engine
+}
+
+func (s *Server) init() {
+	s.Router.Use(cors.Default())
+	s.Router.Use(static.Serve("/", static.LocalFile("./dist", true)))
+
+	s.Router.GET("/status/ping", controllers.Ping)
+	s.Router.GET("/metrics", gin.WrapH(promhttp.Handler()))
+}
+
+func (s *Server) routes() {
+	snakeAPI := s.Router.Group("/games/api/snake")
+	snakeAPI.POST("", snake.StartGame)
+	snakeAPI.GET("", snake.GetGames)
+	snakeAPI.GET("/:id", snake.GetGame)
+	snakeAPI.PUT("/:id", snake.EndGame)
+}
+
+func (s *Server) Start() {
+	s.init()
+	s.routes()
+
+	if err := s.Router.Run(host + ":" + port); err != nil {
+		panic("Server failed to start.")
+	}
+}
+
 func main() {
 	envHost, ok := os.LookupEnv("HOST")
 	if ok {
 		host = envHost
-		println("Got host from environment: " + host)
+		log.Println("Got host from environment: " + host)
 	}
 
 	envPort, ok := os.LookupEnv("PORT")
 	if ok {
 		port = envPort
-		println("Got port from environment: " + port)
+		log.Println("Got port from environment: " + port)
 	}
 
 	envGinMode, ok := os.LookupEnv("GIN_MODE")
 	if ok {
 		ginMode = envGinMode
-		println("Got Gin mode from environment: " + ginMode)
+		log.Println("Got Gin mode from environment: " + ginMode)
 	}
 
 	gin.SetMode(ginMode)
-	r := gin.Default()
-	r.Use(cors.Default())
-
-	r.Use(static.Serve("/", static.LocalFile("./dist", true)))
-
-	r.GET("/status/ping", controllers.Ping)
-	r.GET("/metrics", gin.WrapH(promhttp.Handler()))
-
-	r.POST("/games/api/snake", snake.StartGame)
-	r.GET("/games/api/snake", snake.GetGames)
-	r.GET("/games/api/snake/:id", snake.GetGame)
-	r.PUT("/games/api/snake/:id", snake.EndGame)
-
-	println("Started on " + host + ":" + port)
-
-	if err := r.Run(host + ":" + port); err != nil {
-		panic("Server failed to start.")
+	s := &Server{
+		Router: gin.Default(),
 	}
+	s.Start()
 }
