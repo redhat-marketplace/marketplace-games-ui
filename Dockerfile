@@ -36,6 +36,16 @@ ENV GIN_MODE=release
 
 EXPOSE 8080
 
+
+# Required lables for Red Hat OpenShift's Build Service Certification
+LABEL name="RHM Arcade" \
+  maintainer="EMAIL@ADDRESS" \
+  vendor="Red Hat Marketplace" \
+  version="VERSION NUMBER" \
+  release="1" \
+  summary="A simple web-based arcade built by the Red Hat Marketplace Labs team." \
+  description="A collection of small arcade games such as snake made for the web."
+
 # Copy over client build
 COPY --from=client-build /build/dist /home/app/dist
 # Copy over final service binary
